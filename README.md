@@ -137,11 +137,15 @@ cd vacuum_agents_groupM
 pip install -r requirements.txt
 ```
 
-3. **Run Simulations**  
+3. **Visualize Two-Location Vacuum Environment (Exercise 2.11)**  
+```bash
+python visualize_two_location.py
+```
+
+4. **Run Simulations (Exercise 2.14)**  
 ```bash
 python simulation.py
 ```
-
 ---
 
 ## Running Simulations & Interpreting Results

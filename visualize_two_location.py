@@ -101,7 +101,7 @@ def visualize_two_location_step_by_step(num_steps=3):
             draw_environment()
 
     ani = animation.FuncAnimation(
-        fig, animate, frames=num_steps, interval=1000,
+        fig, animate, frames=num_steps, interval=2000,
         init_func=init_func, repeat=False
     )
 
