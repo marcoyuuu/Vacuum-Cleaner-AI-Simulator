@@ -219,8 +219,3 @@ This project aligns clearly with the rubric:
 This project meets all the specified assignment objectives, rigorously evaluates AI agent rationality in complex, unknown environments, and provides professional-level visualization and analysis tools to illustrate agent performance and behaviors clearly.
 
 ---
-
-**For questions or additional details, please contact:**  
-*Group M: Marco Yu, Samir Rivera, Lex Feliciano, and Shadiel López*
-
----
