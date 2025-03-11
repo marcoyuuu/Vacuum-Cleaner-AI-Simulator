@@ -97,18 +97,68 @@ The simulator (`environment.py`) is highly modular and customizable, allowing ea
 
 ```
 vacuum_agents_groupM/
+│── 📁 src/                        # Source code directory (organized logically)
+│   │── 📁 berkeley_ai/            # UC Berkeley AI repository (unchanged files)
+│   │   │── agents.py              # Berkeley AI agent implementations
+│   │   │── utils.py               # Berkeley AI utilities
+│   │
+│   │── 📁 agents/                 # Modified and custom agent implementations
+│   │   │── reflex_grid_agent.py   # Updated Reflex Agent for 4-direction movement
+│   │   │── random_grid_agent.py   # Updated Random Agent for 4-direction movement
+│   │   │── model_based_grid_agent.py  # Updated Model-Based Agent for 4-direction movement
+│   │   │── my_rational_agent.py   # BFS-based Rational Agent
+│   │
+│   │── 📁 environment/             # Environment simulation logic
+│   │   │── environment.py          # Environment and world logic
+│   │
+│   │── 📁 simulation/              # Performance measurement and experiment logic
+│   │   │── simulation.py           # Main simulation script
+│   │   │── visualize_two_location.py  # Visualization for Exercise 2.11
+│   │
+│── 📁 tests/                       # Testing directory
+│   │── tests.py                    # Unit tests for agents and environment
 │
-├── agents.py                      # Base agents (unchanged, from UC Berkeley)
-├── utils.py                       # Utility functions (from Berkeley repository, unchanged)
-├── environment.py                  # Custom environment simulator
-├── my_rational_agent.py            # Rational BFS-based agent
-├── reflex_grid_agent.py            # 4-direction reflex agent wrapper
-├── random_grid_agent.py            # 4-direction random agent wrapper
-├── model_based_grid_agent.py       # 4-direction model-based agent wrapper
-├── simulation.py                   # Simulation & visualization scripts
-├── tests.py                        # Unit tests
-├── EXERCISE_2_14_ANSWERS.txt       # Answers to Exercise 2.14
-└── *.png                           # Generated visualization plots
+│── 📁 visualizations/               # Generated images and results
+│   │── 📁 initial_states/          # Initial state images
+│   │   │── initial_default.png
+│   │   │── initial_worst.png
+│   │
+│   │── 📁 bar_charts/              # Bar charts (Performance comparison)
+│   │   │── bar_chart_default.png
+│   │   │── bar_chart_worst.png
+│   │
+│   │── 📁 box_plots/               # Box plots (Performance distribution)
+│   │   │── boxplot_default.png
+│   │   │── boxplot_worst.png
+│   │
+│   │── 📁 line_charts/             # Time-series performance trends
+│   │   │── linechart_Model-Based_default.png
+│   │   │── linechart_Model-Based_worst.png
+│   │   │── linechart_Random_default.png
+│   │   │── linechart_Random_worst.png
+│   │   │── linechart_Rational_default.png
+│   │   │── linechart_Rational_worst.png
+│   │   │── linechart_Reflex_default.png
+│   │   │── linechart_Reflex_worst.png
+│   │
+│   │── 📁 heatmaps/                # Spatial exploration heatmaps
+│   │   │── heatmap_Model-Based_default.png
+│   │   │── heatmap_Model-Based_worst.png
+│   │   │── heatmap_Random_default.png
+│   │   │── heatmap_Random_worst.png
+│   │   │── heatmap_Rational_default.png
+│   │   │── heatmap_Rational_worst.png
+│   │   │── heatmap_Reflex_default.png
+│   │   │── heatmap_Reflex_worst.png
+│
+│── 📁 docs/                         # Documentation files
+│   │── EXERCISE_2_14_ANSWERS.md      # Written responses for Exercise 2.14
+│
+│── 📁 config/                        # Configuration and dependencies
+│   │── requirements.txt              # Required dependencies
+│
+│── LICENSE                           # Project license
+│── README.md                    # Main documentation
 ```
 
 **Note:**  
@@ -134,17 +184,17 @@ cd vacuum_agents_groupM
 
 2. **Install Dependencies**  
 ```bash
-pip install -r requirements.txt
+pip install -r config/requirements.txt
 ```
 
 3. **Visualize Two-Location Vacuum Environment (Exercise 2.11)**  
 ```bash
-python visualize_two_location.py
+python -m src.simulation.visualize_two_location
 ```
 
 4. **Run Simulations (Exercise 2.14)**  
 ```bash
-python simulation.py
+python -m src.simulation.simulation
 ```
 ---
 
@@ -153,23 +203,66 @@ python simulation.py
 ### Execute Simulations:
 Run performance comparisons and visualizations by executing:
 ```bash
-python simulation.py
+python -m src.simulation.simulation
 ```
+---
 
-### Output Interpretation:
-- **Textual Logs:**  
-  ```
-  Reflex: Avg Performance = -24.25, Std Dev = 44.87
-  Random: Avg Performance = 149.60, Std Dev = 95.51
-  Model-Based: Avg Performance = 1.00, Std Dev = 0.00
-  Rational: Avg Performance = 556.45, Std Dev = 114.17
-  ```
-- **Visualizations:**  
-  - **Initial Environment States**: `initial_default.png`, `initial_worst.png`
-  - **Bar Charts:** `bar_chart_default.png`, `bar_chart_worst.png`
-  - **Box Plots:** `boxplot_default.png`, `boxplot_worst.png`
-  - **Line Charts:** `linechart_<Agent>_<Env>.png`
-  - **Heatmaps:** `heatmap_<Agent>_<Env>.png`
+## **Example Visualizations**
+
+Our simulation produces various visualizations to analyze agent performance across different environments. These include **initial state representations, bar charts, box plots, line charts, and heatmaps**. Below are some sample outputs from our experiments.
+
+### **Initial Environment States**
+The following images illustrate the **starting configurations** of both the **Default** and **Worst-Case** environments before agents begin their tasks.
+
+#### **Default Environment**
+![Default Environment](https://github.com/user-attachments/assets/957541fd-983b-4b90-bfcc-d3ba63dce3fd)
+
+#### **Worst-Case Environment**
+![Worst-Case Environment](https://github.com/user-attachments/assets/f0f4b239-d7c1-437e-bac3-6c86b9c03eff)
+
+---
+
+### **Performance Comparisons**
+The following bar charts show **average agent performance** with standard deviation error bars, comparing results across different environments.
+
+#### **Default Environment - Performance Comparison**
+![Bar Chart Default](https://github.com/user-attachments/assets/7e6fa63f-ef1e-4c09-aac2-7bddaa9ea9be)
+
+#### **Worst-Case Environment - Performance Comparison**
+![Bar Chart Worst](https://github.com/user-attachments/assets/a8ca040f-7060-4b14-99cf-1ab992dbd8a6)
+
+---
+
+### **Performance Distribution**
+Box plots below display the **spread of agent performance scores** in each environment, highlighting variability.
+
+#### **Default Environment - Performance Distribution**
+![Box Plot Default](https://github.com/user-attachments/assets/a8597a77-58b8-4bc9-a361-e7b52a3b2437)
+
+#### **Worst-Case Environment - Performance Distribution**
+![Box Plot Worst](https://github.com/user-attachments/assets/c8e5c9bf-b334-4353-8bb2-2543fc2c3fb2)
+
+---
+
+### **Performance Over Time**
+Line charts illustrate **how cumulative agent performance evolves** throughout the simulation.
+
+#### **Reflex Agent - Default Environment**
+![Line Chart Reflex Default](https://github.com/user-attachments/assets/6c50c66e-d698-4560-bc58-c17f9e2b6bfb)
+
+#### **Rational Agent - Worst Environment**
+![Line Chart Rational Worst](https://github.com/user-attachments/assets/938f6ce4-c6b2-4caf-9e63-8244a355bb61)
+
+---
+
+### **Agent Movement and Spatial Coverage**
+Heatmaps represent **how frequently each agent visits different locations** within the environment.
+
+#### **Reflex Agent - Default Environment**
+![Heatmap Reflex Default](https://github.com/user-attachments/assets/d15018d1-6385-441d-afdb-87435efeafde)
+
+#### **Rational Agent - Worst Environment**
+![Heatmap Rational Worst](https://github.com/user-attachments/assets/c13fd859-4dc9-44e2-86fc-c6d869b26a7d)
 
 ---
 
