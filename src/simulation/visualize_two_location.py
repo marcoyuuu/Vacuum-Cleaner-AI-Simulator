@@ -15,8 +15,8 @@ Key points:
 
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
-from environment import ModifiedVacuumEnvironment
-from agents import ReflexVacuumAgent, Dirt
+from src.environment.environment import ModifiedVacuumEnvironment
+from src.berkeley_ai.agents import ReflexVacuumAgent, Dirt
 
 def visualize_two_location_step_by_step(num_steps=3):
     """

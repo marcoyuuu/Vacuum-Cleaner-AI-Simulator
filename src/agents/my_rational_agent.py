@@ -3,12 +3,12 @@
 This module implements a BFS-based rational vacuum agent.
 This agent is designed for Exercise 2.14, where the environment is unknown 
 and the agent must use state (an internal model) and planning to perform effectively.
-It extends the base Agent class (from agents.py) without modifying the base code.
+It extends the base Agent class (from src.berkeley_ai.agents.py) without modifying the base code.
 """
 
 import random
 from collections import deque
-from agents import Agent  # Import the base Agent from agents.py
+from src.berkeley_ai.agents import Agent
 
 def RationalVacuumAgent():
     """A rational agent for the partially observable vacuum environment.
@@ -110,4 +110,4 @@ def RationalVacuumAgent():
         model['last_action'] = action
         return action
 
-    return Agent(program)  # Use the base Agent class from agents.py
+    return Agent(program)  # Use the base Agent class from src.berkeley_ai.agents.py

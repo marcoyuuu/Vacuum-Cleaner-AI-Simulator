@@ -10,9 +10,9 @@ It addresses:
   - Exercise 2.14 (Modified Vacuum Environment): An environment with unknown boundaries, obstacles, 
     and random dirt, where the agent can move Up, Down, Left, and Right.
     It compares multiple agents:
-      - Simple Reflex Agent (from agents.py, adapted via reflex_grid_agent.py)
-      - Randomized Reflex Agent (from agents.py, adapted via random_grid_agent.py)
-      - Model-Based Reflex Agent (from agents.py, adapted via model_based_grid_agent.py)
+      - Simple Reflex Agent (from src.berkeley_ai.agents.py, adapted via reflex_grid_agent.py)
+      - Randomized Reflex Agent (from src.berkeley_ai.agents.py, adapted via random_grid_agent.py)
+      - Model-Based Reflex Agent (from src.berkeley_ai.agents.py, adapted via model_based_grid_agent.py)
       - BFS-based Rational Agent (from my_rational_agent.py)
 
 Visualizations produced for each of two environments (default and worst-case) include:
@@ -30,12 +30,12 @@ import statistics
 import matplotlib.pyplot as plt
 import numpy as np
 
-from environment import ModifiedVacuumEnvironment
-from agents import Dirt, Wall
-from reflex_grid_agent import ReflexGridAgent as ReflexAgent
-from random_grid_agent import RandomGridAgent as RandomAgent
-from model_based_grid_agent import ModelBasedGridAgent as ModelAgent
-from my_rational_agent import RationalVacuumAgent as RationalAgent
+from src.environment.environment import ModifiedVacuumEnvironment
+from src.berkeley_ai.agents import Dirt, Wall
+from src.agents.reflex_grid_agent import ReflexGridAgent as ReflexAgent
+from src.agents.random_grid_agent import RandomGridAgent as RandomAgent
+from src.agents.model_based_grid_agent import ModelBasedGridAgent as ModelAgent
+from src.agents.my_rational_agent import RationalVacuumAgent as RationalAgent
 
 # --------------------------------------------------
 # Environment Factory Functions

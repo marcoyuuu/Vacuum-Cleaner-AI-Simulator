@@ -9,7 +9,7 @@ While simple, this adaptation supports four-direction movement and can be extend
 """
 
 import random
-from agents import Agent, Dirt
+from src.berkeley_ai.agents import Agent
 
 def ModelBasedGridAgent():
     model = {}  # Internal model: maps location to status (e.g., 'Dirty' or 'Clean')

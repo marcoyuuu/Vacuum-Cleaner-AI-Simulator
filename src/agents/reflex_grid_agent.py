@@ -8,7 +8,7 @@ This extension addresses Exercise 2.14 by enabling exploration in all directions
 """
 
 import random
-from agents import Agent, Dirt
+from src.berkeley_ai.agents import Agent
 
 def ReflexGridAgent():
     def program(percept):

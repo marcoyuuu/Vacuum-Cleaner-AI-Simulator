@@ -15,14 +15,14 @@ These tests help verify that the project meets the requirements from Exercises 2
 import unittest
 import numpy as np
 
-from environment import ModifiedVacuumEnvironment
-from agents import Dirt, Wall
-from reflex_grid_agent import ReflexGridAgent
-from random_grid_agent import RandomGridAgent
-from model_based_grid_agent import ModelBasedGridAgent
-from my_rational_agent import RationalVacuumAgent
+from src.environment.environment import ModifiedVacuumEnvironment
+from src.berkeley_ai.agents import Dirt, Wall
+from src.agents.reflex_grid_agent import ReflexGridAgent
+from src.agents.random_grid_agent import RandomGridAgent
+from src.agents.model_based_grid_agent import ModelBasedGridAgent
+from src.agents.my_rational_agent import RationalVacuumAgent
 
-from simulation import (
+from src.simulation.simulation import (
     default_env_factory,
     worst_case_env_factory,
     run_simulation,

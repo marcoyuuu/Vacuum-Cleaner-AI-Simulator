@@ -8,7 +8,7 @@ This adaptation allows full exploration of a 2D grid.
 """
 
 import random
-from agents import Agent, Dirt
+from src.berkeley_ai.agents import Agent
 
 def RandomGridAgent():
     def program(percept):

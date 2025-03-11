@@ -6,7 +6,7 @@ and Exercise 2.14 (the modified vacuum environment with unknown boundaries, obst
 Users can modify the environment by explicitly adding dirt and obstacles.
 """
 
-from agents import XYEnvironment, Dirt, Wall
+from src.berkeley_ai.agents import XYEnvironment, Dirt, Wall
 import random
 
 class ModifiedVacuumEnvironment(XYEnvironment):
@@ -18,8 +18,7 @@ class ModifiedVacuumEnvironment(XYEnvironment):
     def __init__(self, width=5, height=5):
         super().__init__(width, height)
         self.dirt_locations = set()
-        # Optionally, add walls around the perimeter
-        # self.add_walls()
+        self.add_walls()
 
     def add_dirt(self, location):
         """
