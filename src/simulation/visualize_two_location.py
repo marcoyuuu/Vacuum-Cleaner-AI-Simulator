@@ -1,4 +1,4 @@
-# visualize_two_location_step_by_step.py
+# visualize_two_location.py
 """
 Demonstrates a step-by-step animation of the two-location vacuum world (Exercise 2.11),
 showing both cells dirty at the initial frame. We use an init_func so the agent
@@ -34,6 +34,8 @@ def visualize_two_location_step_by_step(num_steps=3):
 
     agent = ReflexVacuumAgent()
     env.add_thing(agent, (0, 0))
+    # Ensure the agent has a location attribute.
+    agent.location = (0, 0)
 
     fig, ax = plt.subplots(figsize=(5, 3))
 
@@ -74,7 +76,7 @@ def visualize_two_location_step_by_step(num_steps=3):
                     fontsize=18, color='white')
 
         # Mark agent
-        if agent.location is not None:
+        if hasattr(agent, 'location') and agent.location is not None:
             ax.plot(agent.location[0] + 0.5, agent.location[1] + 0.5,
                     'ko', markersize=15)
 

@@ -18,7 +18,6 @@ class ModifiedVacuumEnvironment(XYEnvironment):
     def __init__(self, width=5, height=5):
         super().__init__(width, height)
         self.dirt_locations = set()
-        self.add_walls()
 
     def add_dirt(self, location):
         """

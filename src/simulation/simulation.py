@@ -25,6 +25,7 @@ Visualizations produced for each of two environments (default and worst-case) in
 All figures are saved with descriptive filenames.
 """
 
+import os
 import random
 import statistics
 import matplotlib.pyplot as plt
@@ -41,7 +42,7 @@ from src.agents.my_rational_agent import RationalVacuumAgent as RationalAgent
 # Environment Factory Functions
 # --------------------------------------------------
 
-def default_env_factory(env_width=5, env_height=5, inner_dirt_prob=0.75, inner_obs_prob=0.25,
+def default_env_factory(env_width=5, env_height=5, inner_dirt_prob=0.5, inner_obs_prob=0.3,
                         boundary_dirt_prob=0.1, boundary_obs_prob=0.1, **kwargs):
     """
     Factory for the default environment with random dirt and obstacles.
@@ -73,33 +74,31 @@ def default_env_factory(env_width=5, env_height=5, inner_dirt_prob=0.75, inner_o
 
 def create_worst_case_environment():
     """
-    Create a more genuinely maze-like 5x5 grid environment that is challenging
-    but not impossible for the randomized agent to navigate.
-    (Addresses part 3 of Exercise 2.14.)
-
-    The layout forms a corridor around the edges, forcing the agent to traverse
-    a winding path to reach corners, which are marked with dirt.
+    Creates a 5x5 grid with:
+      - obstacles in row=1 and row=3, columns=1..3
+      - dirt in each corner
+      - NO perimeter walls, so we have a corridor around the outer columns
     """
     width, height = 5, 5
     env = ModifiedVacuumEnvironment(width, height)
-
-    # Maze-like obstacles forming a blocked center with a corridor around the perimeter.
-    # This arrangement creates a ring-like path:
-    #   (1,1), (1,2), (1,3)
-    #   (3,1), (3,2), (3,3)
-    obstacle_locations = [
-        (1, 1), (1, 2), (1, 3),
-        (3, 1), (3, 2), (3, 3)
-    ]
-    for loc in obstacle_locations:
-        env.add_obstacle(loc)
-
-    # Place dirt in the four corners, making them hard to reach.
-    corner_dirt_locations = [(0, 0), (0, 4), (4, 0), (4, 4)]
+    
+    # Place obstacles in columns 1 and 3 for rows 1..3 (the "middle" three rows).
+    for row in [1, 2, 3]:
+        env.add_obstacle((1, row))  # Column=1
+        env.add_obstacle((3, row))  # Column=3
+    
+    # Place dirt in each of the four corners
+    corner_dirt_locations = [(0, 0), (0, height - 1),
+                             (width - 1, 0), (width - 1, height - 1)]
     for loc in corner_dirt_locations:
-        env.add_dirt(loc)
-
+        # Directly add a Dirt object at the corner
+        dirt = Dirt()
+        dirt.location = loc
+        env.things.append(dirt)
+        env.dirt_locations.add(loc)
+    
     return env
+    
 
 def worst_case_env_factory(**kwargs):
     """
@@ -140,14 +139,17 @@ def visualize_environment_state(env, title="Environment State", save_filename=No
             ax.add_patch(rect)
     # Mark agent locations, if any.
     for agent in env.agents:
-        ax.plot(agent.location[0] + 0.5, agent.location[1] + 0.5, 'ko', markersize=15)
+        if hasattr(agent, 'location') and agent.location is not None:
+            ax.plot(agent.location[0] + 0.5, agent.location[1] + 0.5, 'ko', markersize=15)
     ax.set_xlim(0, env.width)
     ax.set_ylim(0, env.height)
     ax.set_aspect('equal')
     plt.title(title)
     plt.axis('off')
     if save_filename:
-        plt.savefig(save_filename, bbox_inches='tight')
+        # Save to 'visualizations/initial_states/'
+        outpath = os.path.join("visualizations", "initial_states", save_filename)
+        plt.savefig(outpath, bbox_inches='tight')
     plt.show()
 
 # --------------------------------------------------
@@ -204,7 +206,9 @@ def plot_bar_chart(results, env_label="default"):
     plt.xlabel('Agent Type')
     plt.ylabel('Average Performance')
     plt.title(f'Agent Performance Comparison ({env_label.capitalize()} Environment)')
-    plt.savefig(f"bar_chart_{env_label}.png", bbox_inches="tight")
+    # Save to 'visualizations/bar_charts/'
+    outpath = os.path.join("visualizations", "bar_charts", f"bar_chart_{env_label}.png")
+    plt.savefig(outpath, bbox_inches="tight")
     plt.show()
 
 def compare_agents_boxplot(env_factory, trials=10, steps=100, **env_kwargs):
@@ -229,7 +233,9 @@ def compare_agents_boxplot(env_factory, trials=10, steps=100, **env_kwargs):
     plt.ylabel('Performance Score')
     title = f"Performance Distribution per Agent Type ({env_kwargs.get('env_label', 'default').capitalize()} Environment)"
     plt.title(title)
-    plt.savefig(f"boxplot_{env_kwargs.get('env_label', 'default')}.png", bbox_inches="tight")
+    # Save to 'visualizations/box_plots/'
+    outpath = os.path.join("visualizations", "box_plots", f"boxplot_{env_kwargs.get('env_label', 'default')}.png")
+    plt.savefig(outpath, bbox_inches="tight")
     plt.show()
     return data
 
@@ -272,7 +278,9 @@ def plot_time_series(time_series, agent_name, env_label="default"):
     plt.title(f'Performance Over Time - {agent_name} ({env_label.capitalize()} Environment)')
     plt.grid(True)
     filename = f"linechart_{agent_name.replace(' ', '_')}_{env_label}.png"
-    plt.savefig(filename, bbox_inches="tight")
+    # Save to 'visualizations/line_charts/'
+    outpath = os.path.join("visualizations", "line_charts", filename)
+    plt.savefig(outpath, bbox_inches="tight")
     plt.show()
 
 # --------------------------------------------------
@@ -315,7 +323,9 @@ def plot_heatmap(data, agent_name, env_label="default"):
     plt.ylabel('Y Coordinate')
     plt.colorbar(label='Visit Count')
     filename = f"heatmap_{agent_name.replace(' ', '_')}_{env_label}.png"
-    plt.savefig(filename, bbox_inches="tight")
+    # Save to 'visualizations/heatmaps/'
+    outpath = os.path.join("visualizations", "heatmaps", filename)
+    plt.savefig(outpath, bbox_inches="tight")
     plt.show()
 
 # --------------------------------------------------
