@@ -93,6 +93,26 @@ The simulator (`environment.py`) is highly modular and customizable, allowing ea
 
 ---
 
+## Jupyter Notebook
+
+A comprehensive Jupyter Notebook (`Vacuum_Cleaner_AI_Simulator.ipynb`) is provided to:
+- **Integrate all aspects** of the project in one document.
+- **Demonstrate Exercise 2.11** by animating a two-location vacuum world.
+- **Showcase simulations and visualizations** for Exercise 2.14, including performance comparisons and analysis.
+- **Provide interactive code and detailed explanations** that answer all assignment questions.
+
+### How to Open and Run the Notebook:
+1. **Open the Project Folder:**  
+   Clone the repository and open the project folder (`vacuum_agents_groupM`) in VS Code or your preferred Jupyter interface.
+2. **Locate the Notebook:**  
+   Find `Vacuum_Cleaner_AI_Simulator.ipynb` in the project root.
+3. **Open in Notebook Editor:**  
+   Double-click the file or right-click and choose "Open With" → "Jupyter Notebook Editor."
+4. **Select Kernel and Run Cells:**  
+   Choose the appropriate Python kernel (or your virtual environment) and run all cells sequentially to view the animations and visualizations.
+
+---
+
 ## Project Structure
 
 ```
@@ -157,8 +177,11 @@ vacuum_agents_groupM/
 │── 📁 config/                        # Configuration and dependencies
 │   │── requirements.txt              # Required dependencies
 │
-│── LICENSE                           # Project license
-│── README.md                    # Main documentation
+│── .gitignore                         # Specifies files and directories that should be ignored by Git (e.g., __pycache__, virtual environments, logs).
+│── README.md                          # Main project documentation; includes an overview, installation guide, usage instructions, and project structure.
+│── LICENSE                            # Project license; defines the legal terms under which the code can be used, modified, and shared.
+│── Vacuum_Cleaner_AI_Simulator.ipynb  # Jupyter Notebook integrating all exercises; contains explanations, simulations, visualizations, and analysis.
+
 ```
 
 **Note:**  
@@ -314,5 +337,3 @@ This project aligns clearly with the rubric:
 ## Conclusion
 
 This project meets all the specified assignment objectives, rigorously evaluates AI agent rationality in complex, unknown environments, and provides professional-level visualization and analysis tools to illustrate agent performance and behaviors clearly.
-
----
