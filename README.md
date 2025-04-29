@@ -7,9 +7,7 @@
 
 **Team:** Group M  
 - **Marco Yu** (Undergraduate, Computer Science)  
-- **Samir Rivera** (Undergraduate, Software Engineering)  
-- **Lex Feliciano** (Undergraduate, Electrical and Computer Engineering)  
-- **Shadiel López** (Undergraduate, Computer Engineering)  
+- **Samir Rivera** (Undergraduate, Software Engineering)
 
 **Professor:** J. Fernando Vega Riveros  
 **Date:** March 7, 2025  
